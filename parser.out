@@ -11,31 +11,33 @@ Rule 5     expresion -> expresion MENOS expresion
 Rule 6     expresion -> expresion POR expresion
 Rule 7     expresion -> expresion DIVIDIDO expresion
 Rule 8     expresion -> expresion MOD expresion
-Rule 9     expresion -> MENOS expresion
-Rule 10    expresion -> PARIZQ expresion PARDER
-Rule 11    expresion -> ENTERO
-Rule 12    expresion -> DECIMAL
+Rule 9     expresion -> expresion POT expresion
+Rule 10    expresion -> MENOS expresion
+Rule 11    expresion -> PARIZQ expresion PARDER
+Rule 12    expresion -> ENTERO
+Rule 13    expresion -> DECIMAL
 
 Terminals, with rules where they appear
 
 CORDER               : 3
 CORIZQ               : 3
-DECIMAL              : 12
+DECIMAL              : 13
 DIVIDIDO             : 7
-ENTERO               : 11
+ENTERO               : 12
 MAS                  : 4
-MENOS                : 5 9
+MENOS                : 5 10
 MOD                  : 8
-PARDER               : 10
-PARIZQ               : 10
+PARDER               : 11
+PARIZQ               : 11
 POR                  : 6
+POT                  : 9
 PTCOMA               : 3
 REVALUAR             : 3
 error                : 
 
 Nonterminals, with rules where they appear
 
-expresion            : 3 4 4 5 5 6 6 7 7 8 8 9 10
+expresion            : 3 4 4 5 5 6 6 7 7 8 8 9 9 10 11
 instruccion          : 1 2
 instrucciones        : 1 0
 
@@ -95,10 +97,11 @@ state 5
     (6) expresion -> . expresion POR expresion
     (7) expresion -> . expresion DIVIDIDO expresion
     (8) expresion -> . expresion MOD expresion
-    (9) expresion -> . MENOS expresion
-    (10) expresion -> . PARIZQ expresion PARDER
-    (11) expresion -> . ENTERO
-    (12) expresion -> . DECIMAL
+    (9) expresion -> . expresion POT expresion
+    (10) expresion -> . MENOS expresion
+    (11) expresion -> . PARIZQ expresion PARDER
+    (12) expresion -> . ENTERO
+    (13) expresion -> . DECIMAL
 
     MENOS           shift and go to state 7
     PARIZQ          shift and go to state 8
@@ -115,6 +118,7 @@ state 6
     (6) expresion -> expresion . POR expresion
     (7) expresion -> expresion . DIVIDIDO expresion
     (8) expresion -> expresion . MOD expresion
+    (9) expresion -> expresion . POT expresion
 
     CORDER          shift and go to state 11
     MAS             shift and go to state 12
@@ -122,40 +126,22 @@ state 6
     POR             shift and go to state 14
     DIVIDIDO        shift and go to state 15
     MOD             shift and go to state 16
+    POT             shift and go to state 17
 
 
 state 7
 
-    (9) expresion -> MENOS . expresion
+    (10) expresion -> MENOS . expresion
     (4) expresion -> . expresion MAS expresion
     (5) expresion -> . expresion MENOS expresion
     (6) expresion -> . expresion POR expresion
     (7) expresion -> . expresion DIVIDIDO expresion
     (8) expresion -> . expresion MOD expresion
-    (9) expresion -> . MENOS expresion
-    (10) expresion -> . PARIZQ expresion PARDER
-    (11) expresion -> . ENTERO
-    (12) expresion -> . DECIMAL
-
-    MENOS           shift and go to state 7
-    PARIZQ          shift and go to state 8
-    ENTERO          shift and go to state 9
-    DECIMAL         shift and go to state 10
-
-    expresion                      shift and go to state 17
-
-state 8
-
-    (10) expresion -> PARIZQ . expresion PARDER
-    (4) expresion -> . expresion MAS expresion
-    (5) expresion -> . expresion MENOS expresion
-    (6) expresion -> . expresion POR expresion
-    (7) expresion -> . expresion DIVIDIDO expresion
-    (8) expresion -> . expresion MOD expresion
-    (9) expresion -> . MENOS expresion
-    (10) expresion -> . PARIZQ expresion PARDER
-    (11) expresion -> . ENTERO
-    (12) expresion -> . DECIMAL
+    (9) expresion -> . expresion POT expresion
+    (10) expresion -> . MENOS expresion
+    (11) expresion -> . PARIZQ expresion PARDER
+    (12) expresion -> . ENTERO
+    (13) expresion -> . DECIMAL
 
     MENOS           shift and go to state 7
     PARIZQ          shift and go to state 8
@@ -164,37 +150,60 @@ state 8
 
     expresion                      shift and go to state 18
 
+state 8
+
+    (11) expresion -> PARIZQ . expresion PARDER
+    (4) expresion -> . expresion MAS expresion
+    (5) expresion -> . expresion MENOS expresion
+    (6) expresion -> . expresion POR expresion
+    (7) expresion -> . expresion DIVIDIDO expresion
+    (8) expresion -> . expresion MOD expresion
+    (9) expresion -> . expresion POT expresion
+    (10) expresion -> . MENOS expresion
+    (11) expresion -> . PARIZQ expresion PARDER
+    (12) expresion -> . ENTERO
+    (13) expresion -> . DECIMAL
+
+    MENOS           shift and go to state 7
+    PARIZQ          shift and go to state 8
+    ENTERO          shift and go to state 9
+    DECIMAL         shift and go to state 10
+
+    expresion                      shift and go to state 19
+
 state 9
 
-    (11) expresion -> ENTERO .
+    (12) expresion -> ENTERO .
 
-    CORDER          reduce using rule 11 (expresion -> ENTERO .)
-    MAS             reduce using rule 11 (expresion -> ENTERO .)
-    MENOS           reduce using rule 11 (expresion -> ENTERO .)
-    POR             reduce using rule 11 (expresion -> ENTERO .)
-    DIVIDIDO        reduce using rule 11 (expresion -> ENTERO .)
-    MOD             reduce using rule 11 (expresion -> ENTERO .)
-    PARDER          reduce using rule 11 (expresion -> ENTERO .)
+    CORDER          reduce using rule 12 (expresion -> ENTERO .)
+    MAS             reduce using rule 12 (expresion -> ENTERO .)
+    MENOS           reduce using rule 12 (expresion -> ENTERO .)
+    POR             reduce using rule 12 (expresion -> ENTERO .)
+    DIVIDIDO        reduce using rule 12 (expresion -> ENTERO .)
+    MOD             reduce using rule 12 (expresion -> ENTERO .)
+    POT             reduce using rule 12 (expresion -> ENTERO .)
+    PARDER          reduce using rule 12 (expresion -> ENTERO .)
 
 
 state 10
 
-    (12) expresion -> DECIMAL .
+    (13) expresion -> DECIMAL .
 
-    CORDER          reduce using rule 12 (expresion -> DECIMAL .)
-    MAS             reduce using rule 12 (expresion -> DECIMAL .)
-    MENOS           reduce using rule 12 (expresion -> DECIMAL .)
-    POR             reduce using rule 12 (expresion -> DECIMAL .)
-    DIVIDIDO        reduce using rule 12 (expresion -> DECIMAL .)
-    MOD             reduce using rule 12 (expresion -> DECIMAL .)
-    PARDER          reduce using rule 12 (expresion -> DECIMAL .)
+    CORDER          reduce using rule 13 (expresion -> DECIMAL .)
+    MAS             reduce using rule 13 (expresion -> DECIMAL .)
+    MENOS           reduce using rule 13 (expresion -> DECIMAL .)
+    POR             reduce using rule 13 (expresion -> DECIMAL .)
+    DIVIDIDO        reduce using rule 13 (expresion -> DECIMAL .)
+    MOD             reduce using rule 13 (expresion -> DECIMAL .)
+    POT             reduce using rule 13 (expresion -> DECIMAL .)
+    PARDER          reduce using rule 13 (expresion -> DECIMAL .)
 
 
 state 11
 
     (3) instruccion -> REVALUAR CORIZQ expresion CORDER . PTCOMA
 
-    PTCOMA          shift and go to state 19
+    PTCOMA          shift and go to state 20
 
 
 state 12
@@ -205,17 +214,18 @@ state 12
     (6) expresion -> . expresion POR expresion
     (7) expresion -> . expresion DIVIDIDO expresion
     (8) expresion -> . expresion MOD expresion
-    (9) expresion -> . MENOS expresion
-    (10) expresion -> . PARIZQ expresion PARDER
-    (11) expresion -> . ENTERO
-    (12) expresion -> . DECIMAL
+    (9) expresion -> . expresion POT expresion
+    (10) expresion -> . MENOS expresion
+    (11) expresion -> . PARIZQ expresion PARDER
+    (12) expresion -> . ENTERO
+    (13) expresion -> . DECIMAL
 
     MENOS           shift and go to state 7
     PARIZQ          shift and go to state 8
     ENTERO          shift and go to state 9
     DECIMAL         shift and go to state 10
 
-    expresion                      shift and go to state 20
+    expresion                      shift and go to state 21
 
 state 13
 
@@ -225,17 +235,18 @@ state 13
     (6) expresion -> . expresion POR expresion
     (7) expresion -> . expresion DIVIDIDO expresion
     (8) expresion -> . expresion MOD expresion
-    (9) expresion -> . MENOS expresion
-    (10) expresion -> . PARIZQ expresion PARDER
-    (11) expresion -> . ENTERO
-    (12) expresion -> . DECIMAL
+    (9) expresion -> . expresion POT expresion
+    (10) expresion -> . MENOS expresion
+    (11) expresion -> . PARIZQ expresion PARDER
+    (12) expresion -> . ENTERO
+    (13) expresion -> . DECIMAL
 
     MENOS           shift and go to state 7
     PARIZQ          shift and go to state 8
     ENTERO          shift and go to state 9
     DECIMAL         shift and go to state 10
 
-    expresion                      shift and go to state 21
+    expresion                      shift and go to state 22
 
 state 14
 
@@ -245,17 +256,18 @@ state 14
     (6) expresion -> . expresion POR expresion
     (7) expresion -> . expresion DIVIDIDO expresion
     (8) expresion -> . expresion MOD expresion
-    (9) expresion -> . MENOS expresion
-    (10) expresion -> . PARIZQ expresion PARDER
-    (11) expresion -> . ENTERO
-    (12) expresion -> . DECIMAL
+    (9) expresion -> . expresion POT expresion
+    (10) expresion -> . MENOS expresion
+    (11) expresion -> . PARIZQ expresion PARDER
+    (12) expresion -> . ENTERO
+    (13) expresion -> . DECIMAL
 
     MENOS           shift and go to state 7
     PARIZQ          shift and go to state 8
     ENTERO          shift and go to state 9
     DECIMAL         shift and go to state 10
 
-    expresion                      shift and go to state 22
+    expresion                      shift and go to state 23
 
 state 15
 
@@ -265,17 +277,18 @@ state 15
     (6) expresion -> . expresion POR expresion
     (7) expresion -> . expresion DIVIDIDO expresion
     (8) expresion -> . expresion MOD expresion
-    (9) expresion -> . MENOS expresion
-    (10) expresion -> . PARIZQ expresion PARDER
-    (11) expresion -> . ENTERO
-    (12) expresion -> . DECIMAL
+    (9) expresion -> . expresion POT expresion
+    (10) expresion -> . MENOS expresion
+    (11) expresion -> . PARIZQ expresion PARDER
+    (12) expresion -> . ENTERO
+    (13) expresion -> . DECIMAL
 
     MENOS           shift and go to state 7
     PARIZQ          shift and go to state 8
     ENTERO          shift and go to state 9
     DECIMAL         shift and go to state 10
 
-    expresion                      shift and go to state 23
+    expresion                      shift and go to state 24
 
 state 16
 
@@ -285,60 +298,87 @@ state 16
     (6) expresion -> . expresion POR expresion
     (7) expresion -> . expresion DIVIDIDO expresion
     (8) expresion -> . expresion MOD expresion
-    (9) expresion -> . MENOS expresion
-    (10) expresion -> . PARIZQ expresion PARDER
-    (11) expresion -> . ENTERO
-    (12) expresion -> . DECIMAL
+    (9) expresion -> . expresion POT expresion
+    (10) expresion -> . MENOS expresion
+    (11) expresion -> . PARIZQ expresion PARDER
+    (12) expresion -> . ENTERO
+    (13) expresion -> . DECIMAL
 
     MENOS           shift and go to state 7
     PARIZQ          shift and go to state 8
     ENTERO          shift and go to state 9
     DECIMAL         shift and go to state 10
 
-    expresion                      shift and go to state 24
+    expresion                      shift and go to state 25
 
 state 17
 
-    (9) expresion -> MENOS expresion .
+    (9) expresion -> expresion POT . expresion
+    (4) expresion -> . expresion MAS expresion
+    (5) expresion -> . expresion MENOS expresion
+    (6) expresion -> . expresion POR expresion
+    (7) expresion -> . expresion DIVIDIDO expresion
+    (8) expresion -> . expresion MOD expresion
+    (9) expresion -> . expresion POT expresion
+    (10) expresion -> . MENOS expresion
+    (11) expresion -> . PARIZQ expresion PARDER
+    (12) expresion -> . ENTERO
+    (13) expresion -> . DECIMAL
+
+    MENOS           shift and go to state 7
+    PARIZQ          shift and go to state 8
+    ENTERO          shift and go to state 9
+    DECIMAL         shift and go to state 10
+
+    expresion                      shift and go to state 26
+
+state 18
+
+    (10) expresion -> MENOS expresion .
     (4) expresion -> expresion . MAS expresion
     (5) expresion -> expresion . MENOS expresion
     (6) expresion -> expresion . POR expresion
     (7) expresion -> expresion . DIVIDIDO expresion
     (8) expresion -> expresion . MOD expresion
+    (9) expresion -> expresion . POT expresion
 
-    CORDER          reduce using rule 9 (expresion -> MENOS expresion .)
-    MAS             reduce using rule 9 (expresion -> MENOS expresion .)
-    MENOS           reduce using rule 9 (expresion -> MENOS expresion .)
-    POR             reduce using rule 9 (expresion -> MENOS expresion .)
-    DIVIDIDO        reduce using rule 9 (expresion -> MENOS expresion .)
-    MOD             reduce using rule 9 (expresion -> MENOS expresion .)
-    PARDER          reduce using rule 9 (expresion -> MENOS expresion .)
+    CORDER          reduce using rule 10 (expresion -> MENOS expresion .)
+    MAS             reduce using rule 10 (expresion -> MENOS expresion .)
+    MENOS           reduce using rule 10 (expresion -> MENOS expresion .)
+    POR             reduce using rule 10 (expresion -> MENOS expresion .)
+    DIVIDIDO        reduce using rule 10 (expresion -> MENOS expresion .)
+    MOD             reduce using rule 10 (expresion -> MENOS expresion .)
+    POT             reduce using rule 10 (expresion -> MENOS expresion .)
+    PARDER          reduce using rule 10 (expresion -> MENOS expresion .)
 
   ! MAS             [ shift and go to state 12 ]
   ! MENOS           [ shift and go to state 13 ]
   ! POR             [ shift and go to state 14 ]
   ! DIVIDIDO        [ shift and go to state 15 ]
   ! MOD             [ shift and go to state 16 ]
+  ! POT             [ shift and go to state 17 ]
 
 
-state 18
+state 19
 
-    (10) expresion -> PARIZQ expresion . PARDER
+    (11) expresion -> PARIZQ expresion . PARDER
     (4) expresion -> expresion . MAS expresion
     (5) expresion -> expresion . MENOS expresion
     (6) expresion -> expresion . POR expresion
     (7) expresion -> expresion . DIVIDIDO expresion
     (8) expresion -> expresion . MOD expresion
+    (9) expresion -> expresion . POT expresion
 
-    PARDER          shift and go to state 25
+    PARDER          shift and go to state 27
     MAS             shift and go to state 12
     MENOS           shift and go to state 13
     POR             shift and go to state 14
     DIVIDIDO        shift and go to state 15
     MOD             shift and go to state 16
+    POT             shift and go to state 17
 
 
-state 19
+state 20
 
     (3) instruccion -> REVALUAR CORIZQ expresion CORDER PTCOMA .
 
@@ -346,7 +386,7 @@ state 19
     $end            reduce using rule 3 (instruccion -> REVALUAR CORIZQ expresion CORDER PTCOMA .)
 
 
-state 20
+state 21
 
     (4) expresion -> expresion MAS expresion .
     (4) expresion -> expresion . MAS expresion
@@ -354,10 +394,12 @@ state 20
     (6) expresion -> expresion . POR expresion
     (7) expresion -> expresion . DIVIDIDO expresion
     (8) expresion -> expresion . MOD expresion
+    (9) expresion -> expresion . POT expresion
 
     CORDER          reduce using rule 4 (expresion -> expresion MAS expresion .)
     MAS             reduce using rule 4 (expresion -> expresion MAS expresion .)
     MENOS           reduce using rule 4 (expresion -> expresion MAS expresion .)
+    POT             reduce using rule 4 (expresion -> expresion MAS expresion .)
     PARDER          reduce using rule 4 (expresion -> expresion MAS expresion .)
     POR             shift and go to state 14
     DIVIDIDO        shift and go to state 15
@@ -368,9 +410,10 @@ state 20
   ! MOD             [ reduce using rule 4 (expresion -> expresion MAS expresion .) ]
   ! MAS             [ shift and go to state 12 ]
   ! MENOS           [ shift and go to state 13 ]
+  ! POT             [ shift and go to state 17 ]
 
 
-state 21
+state 22
 
     (5) expresion -> expresion MENOS expresion .
     (4) expresion -> expresion . MAS expresion
@@ -378,10 +421,12 @@ state 21
     (6) expresion -> expresion . POR expresion
     (7) expresion -> expresion . DIVIDIDO expresion
     (8) expresion -> expresion . MOD expresion
+    (9) expresion -> expresion . POT expresion
 
     CORDER          reduce using rule 5 (expresion -> expresion MENOS expresion .)
     MAS             reduce using rule 5 (expresion -> expresion MENOS expresion .)
     MENOS           reduce using rule 5 (expresion -> expresion MENOS expresion .)
+    POT             reduce using rule 5 (expresion -> expresion MENOS expresion .)
     PARDER          reduce using rule 5 (expresion -> expresion MENOS expresion .)
     POR             shift and go to state 14
     DIVIDIDO        shift and go to state 15
@@ -392,9 +437,10 @@ state 21
   ! MOD             [ reduce using rule 5 (expresion -> expresion MENOS expresion .) ]
   ! MAS             [ shift and go to state 12 ]
   ! MENOS           [ shift and go to state 13 ]
+  ! POT             [ shift and go to state 17 ]
 
 
-state 22
+state 23
 
     (6) expresion -> expresion POR expresion .
     (4) expresion -> expresion . MAS expresion
@@ -402,6 +448,7 @@ state 22
     (6) expresion -> expresion . POR expresion
     (7) expresion -> expresion . DIVIDIDO expresion
     (8) expresion -> expresion . MOD expresion
+    (9) expresion -> expresion . POT expresion
 
     CORDER          reduce using rule 6 (expresion -> expresion POR expresion .)
     MAS             reduce using rule 6 (expresion -> expresion POR expresion .)
@@ -409,6 +456,7 @@ state 22
     POR             reduce using rule 6 (expresion -> expresion POR expresion .)
     DIVIDIDO        reduce using rule 6 (expresion -> expresion POR expresion .)
     MOD             reduce using rule 6 (expresion -> expresion POR expresion .)
+    POT             reduce using rule 6 (expresion -> expresion POR expresion .)
     PARDER          reduce using rule 6 (expresion -> expresion POR expresion .)
 
   ! MAS             [ shift and go to state 12 ]
@@ -416,9 +464,10 @@ state 22
   ! POR             [ shift and go to state 14 ]
   ! DIVIDIDO        [ shift and go to state 15 ]
   ! MOD             [ shift and go to state 16 ]
+  ! POT             [ shift and go to state 17 ]
 
 
-state 23
+state 24
 
     (7) expresion -> expresion DIVIDIDO expresion .
     (4) expresion -> expresion . MAS expresion
@@ -426,6 +475,7 @@ state 23
     (6) expresion -> expresion . POR expresion
     (7) expresion -> expresion . DIVIDIDO expresion
     (8) expresion -> expresion . MOD expresion
+    (9) expresion -> expresion . POT expresion
 
     CORDER          reduce using rule 7 (expresion -> expresion DIVIDIDO expresion .)
     MAS             reduce using rule 7 (expresion -> expresion DIVIDIDO expresion .)
@@ -433,6 +483,7 @@ state 23
     POR             reduce using rule 7 (expresion -> expresion DIVIDIDO expresion .)
     DIVIDIDO        reduce using rule 7 (expresion -> expresion DIVIDIDO expresion .)
     MOD             reduce using rule 7 (expresion -> expresion DIVIDIDO expresion .)
+    POT             reduce using rule 7 (expresion -> expresion DIVIDIDO expresion .)
     PARDER          reduce using rule 7 (expresion -> expresion DIVIDIDO expresion .)
 
   ! MAS             [ shift and go to state 12 ]
@@ -440,9 +491,10 @@ state 23
   ! POR             [ shift and go to state 14 ]
   ! DIVIDIDO        [ shift and go to state 15 ]
   ! MOD             [ shift and go to state 16 ]
+  ! POT             [ shift and go to state 17 ]
 
 
-state 24
+state 25
 
     (8) expresion -> expresion MOD expresion .
     (4) expresion -> expresion . MAS expresion
@@ -450,6 +502,7 @@ state 24
     (6) expresion -> expresion . POR expresion
     (7) expresion -> expresion . DIVIDIDO expresion
     (8) expresion -> expresion . MOD expresion
+    (9) expresion -> expresion . POT expresion
 
     CORDER          reduce using rule 8 (expresion -> expresion MOD expresion .)
     MAS             reduce using rule 8 (expresion -> expresion MOD expresion .)
@@ -457,6 +510,7 @@ state 24
     POR             reduce using rule 8 (expresion -> expresion MOD expresion .)
     DIVIDIDO        reduce using rule 8 (expresion -> expresion MOD expresion .)
     MOD             reduce using rule 8 (expresion -> expresion MOD expresion .)
+    POT             reduce using rule 8 (expresion -> expresion MOD expresion .)
     PARDER          reduce using rule 8 (expresion -> expresion MOD expresion .)
 
   ! MAS             [ shift and go to state 12 ]
@@ -464,17 +518,61 @@ state 24
   ! POR             [ shift and go to state 14 ]
   ! DIVIDIDO        [ shift and go to state 15 ]
   ! MOD             [ shift and go to state 16 ]
+  ! POT             [ shift and go to state 17 ]
 
 
-state 25
+state 26
 
-    (10) expresion -> PARIZQ expresion PARDER .
+    (9) expresion -> expresion POT expresion .
+    (4) expresion -> expresion . MAS expresion
+    (5) expresion -> expresion . MENOS expresion
+    (6) expresion -> expresion . POR expresion
+    (7) expresion -> expresion . DIVIDIDO expresion
+    (8) expresion -> expresion . MOD expresion
+    (9) expresion -> expresion . POT expresion
 
-    CORDER          reduce using rule 10 (expresion -> PARIZQ expresion PARDER .)
-    MAS             reduce using rule 10 (expresion -> PARIZQ expresion PARDER .)
-    MENOS           reduce using rule 10 (expresion -> PARIZQ expresion PARDER .)
-    POR             reduce using rule 10 (expresion -> PARIZQ expresion PARDER .)
-    DIVIDIDO        reduce using rule 10 (expresion -> PARIZQ expresion PARDER .)
-    MOD             reduce using rule 10 (expresion -> PARIZQ expresion PARDER .)
-    PARDER          reduce using rule 10 (expresion -> PARIZQ expresion PARDER .)
+  ! shift/reduce conflict for MAS resolved as shift
+  ! shift/reduce conflict for MENOS resolved as shift
+  ! shift/reduce conflict for POR resolved as shift
+  ! shift/reduce conflict for DIVIDIDO resolved as shift
+  ! shift/reduce conflict for MOD resolved as shift
+  ! shift/reduce conflict for POT resolved as shift
+    CORDER          reduce using rule 9 (expresion -> expresion POT expresion .)
+    PARDER          reduce using rule 9 (expresion -> expresion POT expresion .)
+    MAS             shift and go to state 12
+    MENOS           shift and go to state 13
+    POR             shift and go to state 14
+    DIVIDIDO        shift and go to state 15
+    MOD             shift and go to state 16
+    POT             shift and go to state 17
 
+  ! MAS             [ reduce using rule 9 (expresion -> expresion POT expresion .) ]
+  ! MENOS           [ reduce using rule 9 (expresion -> expresion POT expresion .) ]
+  ! POR             [ reduce using rule 9 (expresion -> expresion POT expresion .) ]
+  ! DIVIDIDO        [ reduce using rule 9 (expresion -> expresion POT expresion .) ]
+  ! MOD             [ reduce using rule 9 (expresion -> expresion POT expresion .) ]
+  ! POT             [ reduce using rule 9 (expresion -> expresion POT expresion .) ]
+
+
+state 27
+
+    (11) expresion -> PARIZQ expresion PARDER .
+
+    CORDER          reduce using rule 11 (expresion -> PARIZQ expresion PARDER .)
+    MAS             reduce using rule 11 (expresion -> PARIZQ expresion PARDER .)
+    MENOS           reduce using rule 11 (expresion -> PARIZQ expresion PARDER .)
+    POR             reduce using rule 11 (expresion -> PARIZQ expresion PARDER .)
+    DIVIDIDO        reduce using rule 11 (expresion -> PARIZQ expresion PARDER .)
+    MOD             reduce using rule 11 (expresion -> PARIZQ expresion PARDER .)
+    POT             reduce using rule 11 (expresion -> PARIZQ expresion PARDER .)
+    PARDER          reduce using rule 11 (expresion -> PARIZQ expresion PARDER .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for MAS in state 26 resolved as shift
+WARNING: shift/reduce conflict for MENOS in state 26 resolved as shift
+WARNING: shift/reduce conflict for POR in state 26 resolved as shift
+WARNING: shift/reduce conflict for DIVIDIDO in state 26 resolved as shift
+WARNING: shift/reduce conflict for MOD in state 26 resolved as shift
+WARNING: shift/reduce conflict for POT in state 26 resolved as shift

@@ -15,7 +15,8 @@ tokens  = (
     'DECIMAL',
     'ENTERO',
     'PTCOMA',
-    'MOD'
+    'MOD',
+    'POT'
 )
 
 # Tokens
@@ -29,7 +30,8 @@ t_MENOS     = r'-'
 t_POR       = r'\*'
 t_DIVIDIDO  = r'/'
 t_PTCOMA    = r';'
-t_MOD       =r'\%'
+t_MOD       = r'\%'
+t_POT       = r'\^'
 
 
 def t_DECIMAL(t):
@@ -87,12 +89,14 @@ def p_expresion_binaria(t):
                   | expresion MENOS expresion
                   | expresion POR expresion
                   | expresion DIVIDIDO expresion
-                  | expresion MOD expresion'''
+                  | expresion MOD expresion
+                  | expresion POT expresion'''
     if t[2] == '+'  : t[0] = t[1] + t[3]
     elif t[2] == '-': t[0] = t[1] - t[3]
     elif t[2] == '*': t[0] = t[1] * t[3]
     elif t[2] == '/': t[0] = t[1] / t[3]
     elif t[2] == '%': t[0] = t[1] % t[3]
+    elif t[2] == '^': t[0] = t[1] ** t[3]
 
 
 def p_expresion_unaria(t):
